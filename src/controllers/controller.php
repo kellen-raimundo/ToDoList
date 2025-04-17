@@ -11,6 +11,9 @@ function handleRequest(){
                     addTask($_POST['description']);
                 }
                 break;
+            case 'toggle'
+                return
+                break;
         }
     };
 }
