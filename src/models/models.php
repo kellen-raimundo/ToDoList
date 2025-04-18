@@ -18,12 +18,12 @@
     }
 
     // Marca uma task como concluida
-    function ToggleTask($id){
+    function toggleTask($id){
         // Seu código aqui
         $tasks = getTasks();
         foreach($tasks as $index => $task){
             if($task['id'] == $id){
-                $tasks[$index]['completed'] = !$task['completed']
+                $tasks[$index]['completed'] = !$task['completed'];
                 break;
             };
 

@@ -20,25 +20,27 @@
             </div>
         </form>
 
-    <!-- Lista de tarefas -->
-     <ul class="list-group">
-        <li class="list-group-item d-flex align-items-center">
-          <form action="" class="me-3">
-            <input type="hidden" name="action" value="toggle"/>
-            <input type="hidden" name="id" value="id_do_item"/>
-            <input type="checkbox" class="form-check-input"/>
-          </form>
-          <span>Tarefa pendente 0001</span>
-        </li>
 
-        <li class="list-group-item d-flex align-items-center">
-          <form action="" class="me-3">
-            <input type="hidden" name="action" value="toggle"/>
-            <input type="hidden" name="id" value="id_do_item"/>
-            <input type="checkbox" class="form-check-input"/>
-          </form>
-          <span>Tarefa pendente 0001</span>
-        </li>
+     <ul class="list-group">
+      <?php if(empty($tasks)): ?>
+        <li>
+          Nenhuma tarefa adicionada.
+        </li class="list-group-item text-center text-mutted">
+        <?php else: ?>
+          <?php foreach($tasks as $tasks): ?>
+            <!----------Os elementos irão se repetir---------------->
+            <li class="list-group-item d-flex align-items-center <?=$task['completed']?'text-decoration-line-through':''?>">
+            <form method="post" class="me-3">
+              <input type="hidden" value="toggle" name="action"/>
+              <input type="hidden" name="id" value="<?=$task['id']?>"/>
+              <input type="checkbox" class="form-check-inuput" onchange="this.form.submit()<?=$task['completed']?'checked':''?>"/>
+            </form>
+            <span>
+              <?=htmlspecialchars($task['description'])?>
+            </span>
+            </li>
+          <?php endforeach; ?>
+        <?php endif; ?>
      </ul>
     </div>
 </body>
